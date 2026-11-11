@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="hero">
+        <span class="eyebrow">איזה כיף!</span>
+        <h1>ההזמנה התקבלה.</h1>
+        <p>מספר ההזמנה שלכם: <strong>#{{ order_id }}</strong></p>
+        <p>הבקשה ממתינה לטיפול העסק. זו הדגמה, ולא בוצע חיוב.</p>
+        <a class="button" href="/">בחזרה לעוגות</a>
+    </section>
+{% endblock %}

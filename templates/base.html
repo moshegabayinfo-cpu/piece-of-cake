@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Piece of Cake | POC</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <header>
+            <a class="brand" href="/">
+                Piece of Cake
+                <small>POC • עוגות שעושות שמח</small>
+            </a>
+            <nav>
+                <a href="/">קטלוג עוגות</a>
+                <a href="/admin">ניהול הזמנות</a>
+            </nav>
+        </header>
+
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+
+        <footer>
+            Piece of Cake • דוגמה לימודית מקומית • ללא תשלום מקוון
+        </footer>
+    </body>
+</html>

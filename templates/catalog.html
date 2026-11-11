@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="hero">
+        <span class="eyebrow">משהו מתוק בדרך</span>
+        <h1>
+            כל חגיגה מתחילה<br>
+            בחתיכת עוגה.
+        </h1>
+        <p>בחרו עוגה, הזמינו למועד שמתאים לכם, וקבלו במשלוח או באיסוף עצמי.</p>
+    </section>
+
+    <h2>העוגות שלנו</h2>
+
+    <div class="catalog">
+        {% for p in products %}
+            <article class="card">
+                <div class="cake {{ p.icon }}" aria-hidden="true">
+                    <div class="icing"></div>
+                    <div class="layers"></div>
+                    <div class="plate"></div>
+                </div>
+
+                <div class="card-body">
+                    <h2>{{ p.name }}</h2>
+                    <p>{{ p.description }}</p>
+                    <div class="card-bottom">
+                        <strong>₪{{ '%.2f'|format(p.price) }}</strong>
+                        <a class="button" href="{{ url_for('order', product_id=p.id) }}">
+                            להזמנה
+                        </a>
+                    </div>
+                </div>
+            </article>
+        {% else %}
+            <p>אין כרגע מוצרים בקטלוג.</p>
+        {% endfor %}
+    </div>
+
+    <p class="muted">המחיר כולל את העוגה בלבד. בדוגמה המשלוח ללא תוספת תשלום.</p>
+{% endblock %}

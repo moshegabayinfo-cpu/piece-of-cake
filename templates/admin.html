@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+<span class="eyebrow">הצד של העסק</span>
+<h1>הזמנות ומשלוחים</h1>
+<p>איסוף: חדשה ← בהכנה ← מוכנה ← נאספה. משלוח: חדשה ← בהכנה ← מוכנה ← יצאה למשלוח ← נמסרה.</p>
+<div class="table-wrap">
+    <table>
+        <thead>
+            <tr>
+                <th>מספר</th>
+                <th>לקוח</th>
+                <th>מוצר</th>
+                <th>סכום</th>
+                <th>מועד</th>
+                <th>קבלה</th>
+                <th>הערות</th>
+                <th>סטטוס</th>
+            </tr>
+        </thead>
+<tbody>
+    {% for o in orders %}
+    <tr>
+        <td>#{{ o.id }}</td>
+        <td>{{ o.customer_name }}<br>
+            <small>{{ o.phone }}</small>
+        </td>
+        <td>{{ o.product_name }} × {{ o.quantity }}</td>
+        <td>₪{{ '%.2f'|format(o.total) }}</td>
+        <td>{{ o.due_date }}</td>
+        <td>{{ 'משלוח' if o.fulfillment == 'delivery' else 'איסוף עצמי' }}<br>
+            <small>{{ o.address }}</small>
+        </td>
+        <td>{{ o.notes }}</td>
+        <td>
+            <span class="badge">{{ statuses[o.status] }}</span>
+            {% if next_statuses(o) %}
+            <form method="post" action="{{ url_for('change_status', order_id=o.id) }}" class="status-form">
+                <input type="hidden" name="csrf" value="{{ session.csrf }}">
+                <select name="status" aria-label="סטטוס הבא להזמנה {{ o.id }}">
+                    {% for s in next_statuses(o) %}
+                    <option value="{{ s }}">{{ statuses[s] }}</option>
+                    {% endfor %}
+                </select>
+                <button>עדכון</button>
+            </form>
+            {% endif %}
+        </td>
+    </tr>
+    {% else %}
+    <tr>
+        <td colspan="8">עוד אין הזמנות. צרו הזמנה דרך הקטלוג.</td></tr>{% endfor %}</tbody></table></div>{% endblock %}

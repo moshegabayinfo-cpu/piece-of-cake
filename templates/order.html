@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <a href="/">חזרה לקטלוג ←</a>
+    <h1>מזמינים {{ product.name }}</h1>
+    <p>מחיר ליחידה: ₪{{ '%.2f'|format(product.price) }} • משלוח ללא תוספת תשלום בדוגמה</p>
+
+    {% if error %}
+        <p role="alert" class="error">{{ error }}</p>
+    {% endif %}
+
+    <form class="order-form" method="post">
+        <input type="hidden" name="csrf" value="{{ session.csrf }}">
+
+        <label>
+            שם מלא
+            <input
+                name="customer_name"
+                maxlength="100"
+                required
+                value="{{ request.form.get('customer_name', '') }}"
+            >
+        </label>
+
+        <label>
+            טלפון
+            <input
+                name="phone"
+                type="tel"
+                maxlength="30"
+                required
+                value="{{ request.form.get('phone', '') }}"
+            >
+        </label>
+
+        <label>
+            כמות
+            <input
+                name="quantity"
+                type="number"
+                min="1"
+                max="20"
+                required
+                value="{{ request.form.get('quantity', '1') }}"
+            >
+        </label>
+
+        <label>
+            תאריך קבלה
+            <input
+                name="due_date"
+                type="date"
+                min="{{ tomorrow }}"
+                required
+                value="{{ request.form.get('due_date', '') }}"
+            >
+        </label>
+
+        <label>
+            אופן קבלה
+            <select name="fulfillment">
+                <option value="pickup">איסוף עצמי</option>
+                <option
+                    value="delivery"
+                    {% if request.form.get('fulfillment') == 'delivery' %}selected{% endif %}
+                >
+                    משלוח
+                </option>
+            </select>
+        </label>
+
+        <label>
+            כתובת מלאה למשלוח
+            <input
+                name="address"
+                maxlength="300"
+                value="{{ request.form.get('address', '') }}"
+            >
+            <small>חובה למשלוח; באיסוף עצמי אפשר להשאיר ריק.</small>
+        </label>
+
+        <label class="wide">
+            הערות להזמנה
+            <textarea name="notes" maxlength="500" rows="3">{{ request.form.get('notes', '') }}</textarea>
+        </label>
+
+        <button class="wide">שליחת ההזמנה</button>
+    </form>
+{% endblock %}
