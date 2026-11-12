@@ -1,6 +1,7 @@
 """Piece of Cake: דוגמה לימודית מקומית עם Flask ו-PostgreSQL.
 GET מציג דפים; POST מאמת נתונים ושומר שינויים במסד poc.
 """
+#hi git 
 
 import argparse
 from datetime import date
