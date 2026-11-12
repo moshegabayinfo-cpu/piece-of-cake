@@ -1,11 +1,44 @@
+
 {% extends "base.html" %}
 
 {% block content %}
     <section class="hero">
         <span class="eyebrow">איזה כיף!</span>
         <h1>ההזמנה התקבלה.</h1>
-        <p>מספר ההזמנה שלכם: <strong>#{{ order_id }}</strong></p>
+
+        <p>
+            מספר ההזמנה שלכם:
+            <strong>#{{ order_id }}</strong>
+        </p>
+
         <p>הבקשה ממתינה לטיפול העסק. זו הדגמה, ולא בוצע חיוב.</p>
+
+        <hr>
+
+        <h2>סיכום ההזמנה</h2>
+
+        <p>
+            שם העוגה:
+            <strong>{{ product_name }}</strong>
+        </p>
+
+        <p>
+            כמות:
+            <strong>{{ quantity }}</strong>
+        </p>
+
+        <p>
+            מחיר ליחידה בזמן ההזמנה:
+            <strong>₪{{ "%.2f"|format(unit_price) }}</strong>
+        </p>
+
+        <hr>
+
+        <p>
+            סך הכול:
+            <strong>₪{{ "%.2f"|format(total) }}</strong>
+        </p>
+
         <a class="button" href="/">בחזרה לעוגות</a>
     </section>
 {% endblock %}

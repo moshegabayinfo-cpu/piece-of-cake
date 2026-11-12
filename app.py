@@ -191,13 +191,37 @@ def order(product_id):
     ), (400 if error else 200)
 
 
+
 @app.get("/thanks/<int:order_id>")
 def thanks(order_id):
     with connect() as db:
-        found = db.execute("SELECT id FROM orders WHERE id=%s", (order_id,)).fetchone()
+        found = db.execute(
+            """
+            SELECT
+                o.id,
+                p.name AS product_name,
+                o.quantity,
+                o.unit_price,
+                o.quantity * o.unit_price AS total
+            FROM orders o
+            JOIN products p ON p.id = o.product_id
+            WHERE o.id = %s
+            """,
+            (order_id,)
+        ).fetchone()
+
     if not found:
         abort(404, "ההזמנה לא נמצאה")
-    return render_template("thanks.html", order_id=order_id)
+
+    return render_template(
+        "thanks.html",
+        order_id=found["id"],
+        product_name=found["product_name"],
+        quantity=found["quantity"],
+        unit_price=found["unit_price"],
+        total=found["total"]
+    )
+
 
 
 @app.get("/admin")
