@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 
 {% block content %}
@@ -12,9 +13,17 @@
 
     <h2>העוגות שלנו</h2>
 
+    <!-- שדה חיפוש -->
+    <input
+        type="search"
+        id="cakeSearch"
+        placeholder="חפשו עוגה לפי שם..."
+        aria-label="חיפוש עוגה בקטלוג"
+    >
+
     <div class="catalog">
         {% for p in products %}
-            <article class="card">
+            <article class="card" data-cake-name="{{ p.name }}">
                 <div class="cake {{ p.icon }}" aria-hidden="true">
                     <div class="icing"></div>
                     <div class="layers"></div>
@@ -37,5 +46,12 @@
         {% endfor %}
     </div>
 
+    <!-- הודעה כשאין תוצאות חיפוש -->
+    <p id="noResults" style="display: none;">
+        לא נמצאו עוגות מתאימות לחיפוש שלך.
+    </p>
+
     <p class="muted">המחיר כולל את העוגה בלבד. בדוגמה המשלוח ללא תוספת תשלום.</p>
+
+    <script src="{{ url_for('static', filename='catalog-search.js') }}"></script>
 {% endblock %}
