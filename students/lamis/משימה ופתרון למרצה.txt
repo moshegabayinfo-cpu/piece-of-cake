@@ -1,0 +1,60 @@
+המשימה של למיס: סיכום הזמנה בעמוד האישור
+הוסיפי לעמוד האישור שם עוגה, כמות וסכום. הביאי את הנתונים מההזמנה שנשמרה באמצעות JOIN, והשתמשי במחיר היחידה שנשמר ב-orders. שמרי על 404 כאשר ההזמנה אינה קיימת.
+קבצים: app.py ו-templates/thanks.html.
+בדיקות: הזמנה של שתי עוגות, השוואה למסך הניהול ומספר לא קיים.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+פתרון מפורט למרצה
+====================
+1. ב-app.py מצאי את הפונקציה thanks. החליפי את השאילתה הפנימית לשאילתה פרמטרית שמחזירה את נתוני ההזמנה והמוצר:
+@app.get("/thanks/<int:order_id>")
+def thanks(order_id):
+    with connect() as db:
+        order = db.execute("""
+            SELECT o.id, o.quantity, o.unit_price,
+                   o.quantity * o.unit_price AS total,
+                   p.name AS product_name
+            FROM orders o JOIN products p ON p.id = o.product_id
+            WHERE o.id = %s
+        """, (order_id,)).fetchone()
+    if not order:
+        abort(404, "ההזמנה לא נמצאה")
+    return render_template("thanks.html", order_id=order_id, order=order)
+
+2. ב-templates/thanks.html, מתחת למספר ההזמנה, הוסיפי:
+<p>עוגה: {{ order.product_name }}</p>
+<p>כמות: {{ order.quantity }}</p>
+<p>סכום כולל: ₪{{ '%.2f'|format(order.total) }}</p>
+
+3. Flask מעביר את order לתבנית; Jinja מציגה את השדות. אין להשתמש ב-|safe על שם המוצר. המחיר שב-orders מייצג את המחיר בזמן ההזמנה.
+4. צרי הזמנה של שתי עוגות שוקולד במחיר 140 ליחידה ובדקי שמופיע 280.00, ואז השווי למסך הניהול. נסי כתובת עם מזהה לא קיים ובדקי שמתקבל 404. אם מחיר הדוגמה במסד שונה, חשבי לפי המחיר השמור בפועל.
+
+Git והגשה: עדכני main, צרי את הענף האישי שנשלח במייל, שמרי שינויים, בצעי commit ו-push ופתחי Pull Request לבדיקה. אל תעלי את .env או את .venv.

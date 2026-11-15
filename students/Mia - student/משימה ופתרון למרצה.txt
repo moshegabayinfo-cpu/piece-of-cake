@@ -1,0 +1,73 @@
+המשימה של מיה: סינון מסך הניהול לפי סטטוס
+הוסיפי בחירה של כל ההזמנות או סטטוס מסוים. הסינון יסתיר שורות בדפדפן בלבד, ולא ישנה או ימחק מידע. יש להציג הודעה כשאין התאמות.
+קבצים: templates/admin.html וקובץ JavaScript חדש ב-static.
+בדיקות: הכול, סטטוס קיים, סטטוס ללא תוצאות וחזרה להכול. ודאי שעדכון סטטוס עדיין פועל.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+פתרון מפורט למרצה
+====================
+1. ב-templates/admin.html הוסיפי מעל הטבלה תיבת בחירה:
+<label for="status-filter">סינון לפי סטטוס</label>
+<select id="status-filter">
+    <option value="">כל ההזמנות</option>
+    {% for key, label in statuses.items() %}
+    <option value="{{ key }}">{{ label }}</option>
+    {% endfor %}
+</select>
+<p id="filter-empty" hidden>אין הזמנות התואמות לסינון.</p>
+
+2. בתוך לולאת ההזמנות החליפי את תגית <tr> של הזמנה ב:
+<tr data-order-status="{{ o.status }}">
+אל תשני את שורת {% else %} של טבלה ריקה.
+
+3. לפני {% endblock %} הוסיפי:
+<script src="{{ url_for('static', filename='admin-filter.js') }}" defer></script>
+
+4. צרי static/admin-filter.js:
+const filter = document.querySelector('#status-filter');
+const rows = document.querySelectorAll('[data-order-status]');
+const empty = document.querySelector('#filter-empty');
+
+function updateFilter() {
+    let shown = 0;
+    rows.forEach((row) => {
+        const matches = !filter.value || row.dataset.orderStatus === filter.value;
+        row.hidden = !matches;
+        if (matches) shown += 1;
+    });
+    empty.hidden = !filter.value || shown > 0;
+}
+filter.addEventListener('change', updateFilter);
+updateFilter();
+
+5. צרי הזמנות דוגמה והעבירי אחת למצב אחר. בדקי את הסינון ואת כפתור עדכון הסטטוס. שימי לב שעדכון סטטוס שולח טופס ויכול לטעון את העמוד מחדש.
+
+Git והגשה: עדכני main, צרי את הענף האישי שנשלח במייל, שמרי שינויים, בצעי commit ו-push ופתחי Pull Request לבדיקה. אל תעלי את .env או את .venv.

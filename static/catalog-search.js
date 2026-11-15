@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById("cakeSearch");
     const cakeCards = document.querySelectorAll(".card[data-cake-name]");

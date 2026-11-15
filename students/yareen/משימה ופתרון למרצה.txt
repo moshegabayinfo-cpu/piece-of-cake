@@ -1,0 +1,67 @@
+המשימה של ירין: חיפוש עוגה בקטלוג
+הוסיפי שדה חיפוש שמסנן את כרטיסי העוגות בזמן הקלדה. חיפוש חלקי בשם העוגה יציג תוצאות מתאימות; שדה ריק יחזיר את כל הכרטיסים. כשאין תוצאות הציגי הודעה. הסינון נעשה בדפדפן ואינו משנה את המסד. ודאי שכפתורי ההזמנה ממשיכים לפעול.
+קבצים: templates/catalog.html וקובץ JavaScript חדש ב-static.
+בדיקות: שם מלא, חלק משם, חיפוש ללא תוצאה וניקוי השדה.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+פתרון מפורט למרצה
+====================
+1. ב-templates/catalog.html, לפני <div class="catalog">, הוסיפי:
+<label for="cake-search">חיפוש עוגה</label>
+<input id="cake-search" type="search" placeholder="לדוגמה: שוקולד">
+<p id="no-results" hidden>לא נמצאו עוגות מתאימות.</p>
+
+2. בתגית article הקיימת הוסיפי מאפיין נתונים המכיל את שם המוצר:
+<article class="card" data-cake-name="{{ p.name }}">
+
+3. בסוף בלוק content, לפני {% endblock %}, טעני קובץ חדש:
+<script src="{{ url_for('static', filename='catalog-search.js') }}" defer></script>
+
+4. צרי static/catalog-search.js וכתבי:
+const search = document.querySelector('#cake-search');
+const cards = document.querySelectorAll('[data-cake-name]');
+const message = document.querySelector('#no-results');
+
+search.addEventListener('input', () => {
+    const query = search.value.trim().toLocaleLowerCase();
+    let count = 0;
+    cards.forEach((card) => {
+        const name = card.dataset.cakeName.toLocaleLowerCase();
+        const matches = name.includes(query);
+        card.hidden = !matches;
+        if (matches) count += 1;
+    });
+    message.hidden = count !== 0;
+});
+
+5. הפעילי את האתר לפי README. נסי ״שוק״, מילה לא קיימת ואז מחקי את החיפוש. לחצי גם על כפתור הזמנה. hidden מסתיר כרטיסים, אך אינו מוחק אותם או משנה את מסד הנתונים.
+
+Git והגשה: עדכני main, צרי את הענף האישי שנשלח במייל, שמרי שינויים, בצעי commit ו-push ופתחי Pull Request לבדיקה. אל תעלי את .env או את .venv.

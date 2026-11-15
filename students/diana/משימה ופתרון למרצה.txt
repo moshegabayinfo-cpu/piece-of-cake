@@ -1,0 +1,60 @@
+המשימה של דיאנה: סכום משוער בטופס
+הציגי בדף ההזמנה מחיר יחידה כפול כמות ועדכני את הסכום כשהכמות משתנה. אם הכמות אינה מספר שלם בין 1 ל-20 הציגי הודעה. זהו חישוב לתצוגה בלבד; השרת ממשיך לקבוע את המחיר השמור.
+קבצים: templates/order.html וקובץ JavaScript ב-static.
+בדיקות: מחיר 140 וכמות 1 הם 140; כמות 2 היא 280; נסי גם כמות לא תקינה.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+פתרון מפורט למרצה
+====================
+1. ב-templates/order.html הוסיפי id לשדה הכמות הקיים: id="quantity". אל תשני את name="quantity" כי השרת קורא אותו.
+2. לפני כפתור השליחה הוסיפי:
+<p id="total-preview" class="wide" data-price="{{ product.price }}" aria-live="polite"></p>
+<script src="{{ url_for('static', filename='order-total.js') }}" defer></script>
+
+3. צרי static/order-total.js:
+const quantityInput = document.querySelector('#quantity');
+const preview = document.querySelector('#total-preview');
+const price = Number(preview.dataset.price);
+
+function updateTotal() {
+    const quantity = Number(quantityInput.value);
+    if (!quantityInput.value || !Number.isInteger(quantity) || quantity < 1 || quantity > 20) {
+        preview.textContent = 'בחרו כמות שלמה בין 1 ל-20.';
+        return;
+    }
+    preview.textContent = `סכום משוער: ${(price * quantity).toFixed(2)} ₪`;
+}
+quantityInput.addEventListener('input', updateTotal);
+updateTotal();
+
+4. בדקי כמות 1, כמות 2, שדה ריק וערך מחוץ לטווח. שלחי הזמנה תקינה וודאי שהשרת והניהול עדיין עובדים. הסכום בדפדפן אינו מקור האמת: app.py ממשיך לקחת את מחיר המוצר מהמסד.
+
+Git והגשה: עדכני main, צרי את הענף האישי שנשלח במייל, שמרי שינויים, בצעי commit ו-push ופתחי Pull Request לבדיקה. אל תעלי את .env או את .venv.
