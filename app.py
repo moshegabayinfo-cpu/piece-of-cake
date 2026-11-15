@@ -1,14 +1,12 @@
 """Piece of Cake: דוגמה לימודית מקומית עם Flask ו-PostgreSQL.
 GET מציג דפים; POST מאמת נתונים ושומר שינויים במסד poc.
 """
- 
 import argparse
 from datetime import date
 import logging
 import os
 from pathlib import Path
 import secrets
-
 from dotenv import load_dotenv
 from flask import Flask, abort, redirect, render_template, request, session, url_for
 import psycopg
