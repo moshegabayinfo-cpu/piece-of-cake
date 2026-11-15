@@ -1,0 +1,5 @@
+git add
+git comit -m "hello"
+git push
+git branch
+git merge
