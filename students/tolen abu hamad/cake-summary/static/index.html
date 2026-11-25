@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+      <meta charset="UTF-8">
+      <title>Piece of Cake</title>
+      <script src="script.js" defer></script>
+      <link rel="stylesheet" href="style.css">
+</head>
+    
+<body>
+    <h1>Piece of Cake</h1>
+    <h2>Welcome to our cake shop :)</h2>
+    <h2>Baking happiness into every single slice</h2>
+
+    <table style="width:100%" id="cakeTable">
+      <tr>
+        <th>עוגה</th>
+        <th>מחיר בש"ח</th>
+      </tr>
+      <tr>
+        <td>עוגת שוקולד</td>
+        <td>140</td>
+      </tr>
+      <tr>
+        <td>עוגת גבינה</td>
+        <td>160</td>
+      </tr>
+       <tr>
+        <td>עוגת לימון</td>
+        <td>100</td>
+      </tr>
+    </table>
+
+    <div class="budget-container">
+      <label for="cake-budget">מה התקציב שלך?</label>
+      <input type="number" id="cake-budget" name="budget" min="0" placeholder="הכנס תקציב בש״ח" required>
+      <button type="button" id="search-cakes-btn">הצגת עוגות בתקציב</button>
+    </div>
+    
+    <p id="error" name="error"></p>
+
+</body>
+</html>

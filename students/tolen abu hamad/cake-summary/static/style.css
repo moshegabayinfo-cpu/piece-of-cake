@@ -1,0 +1,52 @@
+body {
+  background-color: #f7e1e5;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+h1 {
+  color: #4a4a4a;
+}
+h2 {
+  color: #6c757d;
+}
+table, th, td {
+  border: 1px solid #ced4da;
+  border-collapse: collapse;
+  padding: 10px;
+  text-align: center;
+}
+th {
+  background-color: #6c757d;
+  color: white;
+}
+td {
+  background-color: #ffffff;
+}
+div.budget-container {
+  background-color: #4a4a4a;
+  color: white;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 8px;
+}
+button {
+  background-color: #ffcce5;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+button:hover {
+  background-color: #f5afd1;
+}
+input {
+  padding: 6px;
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+}
+#error {
+  color: #ffc6cc;
+  font-weight: bold;
+}
