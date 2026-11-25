@@ -1,0 +1,51 @@
+body {
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+.cake-title {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: rgb(90, 90, 131);
+}
+.cake-table {
+    width: 30%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    justify-content: center;
+}
+.cake-table th, .cake-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    justify-content: center;
+    
+}
+.filter {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+#budget {
+    padding: 5px;
+    margin-right: 10px;
+    width: 200px;
+    color: rgb(90, 90, 131);
+    border-radius: 5px;
+}
+.filter-button {
+    padding: 5px 10px;
+    background-color: rgb(90, 90, 131);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.error-message {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+}
