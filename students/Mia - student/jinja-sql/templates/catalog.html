@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Piece of Cake — קטלוג</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #fff8ef; color: #214046; font-family: Arial, sans-serif; }
+    main { max-width: 860px; margin: 5vh auto; padding: 30px; }
+    h1 { color: #a14f3b; font-size: 2.4rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+    article { background: white; padding: 22px; border-radius: 15px; box-shadow: 0 6px 25px #293c3715; }
+    .price { font-weight: bold; font-size: 1.3rem; color: #216456; }
+    .notice { background: #fff0d4; padding: 16px; border-radius: 10px; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>🍰 העוגות שלנו</h1>
+  <p>מקור הנתונים: {{ source }}</p>
+  {% if error %}
+    <p class="notice">{{ error }}</p>
+  {% elif products %}
+    <div class="grid">
+      {% for product in products %}
+        <article>
+          <h2>{{ product.name }}</h2>
+          <p>{{ product.description }}</p>
+          <p class="price">{{ product.price }} ₪</p>
+          {% if product.price <=100 %}
+            <p>עוגה קטנה 🍪</p>
+          {% elif product.price >= 160 %}
+            <p>עוגה חגיגית </p>
+          {% else %} 
+            <p> עוגה קלאסית✨</p>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="notice">אין כרגע עוגות להצגה.</p>
+  {% endif %}
+</main>
+</body>
+</html>

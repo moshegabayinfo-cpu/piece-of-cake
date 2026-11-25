@@ -6,21 +6,22 @@
 <div class="eyebrow">
     <form method="get" action="{{ url_for('admin') }}">
         <label for="status">סינון לפי סטטוס:</label>
-        <select name="status" id="status" aria-label="סינון לפי סטטוס">
-            <option value="">הכל</option>
-            <option value="waiting">בהכנה</option> 
-            <option value="cancelled">בוטלה</option>
-            <option value="ready">מוכנה</option>
-            <option value="delivered">נאספה</option>
+
+        <select name="status" id="status-filter">
+            <option value="">כל ההזמנות</option>
+            {% for key, label in statuses.items() %}
+            <option value="{{ key }}">{{ label }}</option>
+            {% endfor %}
         </select>
         <button>סנן לפי סטטוס</button>
          <label for="cake">סינון לפי עוגות:</label>
-         <select name="cake" id="cake" aria-label="סינון לפי עוגות">
-            <option value="chocolate">כל העוגות</option>
-            <option value="chocolate">רק עוגות שוקולד</option>
-            <option value="cheese">רק עוגות גבינה</option>
-            <option value="strawberry">רק עוגות תות</option>
-         </select>
+<p id="filter-empty" hidden>אין הזמנות התואמות לסינון.</p>
+            <select name="cake" id="cake-filter">
+                <option value="">כל העוגות</option>
+                {% for cake in cakes %}
+                <option value="{{ cake }}">{{ cake }}</option>
+                {% endfor %} 
+                
          <button>סנן לפי עוגות</button>
     </form>
 </div>

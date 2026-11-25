@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+    <head>
+        <meta charset="UTF-8">
+        <title> Piece of Cake </title>
+        <link rel="stylesheet" href="..\style.css">
+    </head>
+    <body>
+        <h1 class="header"> Piece of Cake </h1>
+        <p class="body">  ברוכים הבאים לחנות העוגות המתוקה שלנו! המטרה שלנו היא שכל הלקוחות יצאו עם משהו מתוק לדרך ✨ </p>
+        <br> <table class="table">
+            <thead>
+                <tr>
+                    <th>עוגה</th>
+                    <th>מחיר בשקלים</th>
+                </tr>
+            </thead>
+            <tbody id="cake-rows">
+                <tr>
+                    <td>עוגת שוקולד</td>
+                    <td>140</td>
+                </tr>
+                <tr>
+                    <td>עוגת גבינה</td>
+                    <td>160</td>
+                </tr>
+                <tr>
+                    <td>עוגת לימון</td>
+                    <td>100</td>
+                </tr>
+            </tbody>
+        </table>
+    <br> <label> אנא הזן תקציב <br> <input type="Number" id="budget" name="budget"></label> <br>
+        <br> <button id="budget-button" class="button">הצגת עוגות בתקציב</button> <br>
+    <br> <p id="error"></p>
+    <script src="..\script.js"></script>
+    </body>
+</html>

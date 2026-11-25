@@ -43,7 +43,6 @@
     {% endfor %}
 </select>
 <p id="filter-empty" hidden>אין הזמנות התואמות לסינון.</p>
-
 2. בתוך לולאת ההזמנות החליפי את תגית <tr> של הזמנה ב:
 <tr data-order-status="{{ o.status }}">
 אל תשני את שורת {% else %} של טבלה ריקה.
