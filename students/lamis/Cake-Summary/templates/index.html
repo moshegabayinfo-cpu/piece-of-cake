@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Piece of Cake</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../script.js" defer></script>
+</head>
+<body>
+
+    <h1>Piece of Cake</h1>
+    <h2>We sell the best cakes here!</h2>
+
+    <label for="budget">Your budget:</label>
+    <input type="number" id="budget" min="0" step="1">
+
+    <button id="button">Show cakes in budget</button>
+
+    <p id="message" role="status">
+        Invalid budget, please enter a valid budget!
+    </p>
+
+    <table style="width:75%">
+        <thead>
+            <tr>
+                <th>Cakes</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+
+        <tbody id="cakeRows">
+            <tr>
+                <td id="choc">Chocolate</td>
+                <td>140</td>
+            </tr>
+            <tr>
+                <td id="chees">Cheesecake</td>
+                <td>160</td>
+            </tr>
+            <tr>
+                <td id="lemon">Lemon cake</td>
+                <td>100</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
