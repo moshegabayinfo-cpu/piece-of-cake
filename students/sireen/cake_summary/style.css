@@ -1,0 +1,21 @@
+h1 { color: rgb(118, 39, 39);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+body { background-color: rgb(241, 231, 215);
+  margin-right: auto;
+  margin-left: auto;
+  align-items: center;
+  text-align: center;
+}
+
+table, td, th {
+  border: 1px solid rgb(118, 39, 39);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+button { background-color: rgb(128, 78, 78);
+    border: 1;
+}

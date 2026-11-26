@@ -1,0 +1,49 @@
+<!-- צרו index.html ובנו עמוד בעברית, עם קידוד UTF-8 וכיוון ימין לשמאל. העמוד יכלול:
+
+כותרת ראשית Piece of Cake.
+משפט אחד שמתאר את החנות.
+טבלה עם כותרות ״עוגה״ ו״מחיר בש״ח״, ושלוש העוגות: שוקולד 140, גבינה 160, לימון 100.
+תווית ברורה לשדה התקציב, שדה input מסוג number וכפתור ״הצגת עוגות בתקציב״.
+מקום להודעת שגיאה או הודעה שאין תוצאות.
+בדיקה: פתיחת index.html מציגה את הפרטים. בשלב הזה הכפתור עדיין אינו חייב לעבוד. -->
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+    <head>
+        <meta charset="utf-8">
+        <title>Piece of Cake</title>
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+        <h1>Piece of Cake</h1>
+        <p>ברוכים הבאים למקום הכי מתוק במדינה! כאן תמצאו עוגות בכל טעם ולכל אירוע🍰🎂🧁🍭</p>
+        <table id="cakes-table" style="width:80%">
+             <tr>
+                <th>עוגה</th>
+                <th>מחיר בש"ח</th>
+            </tr>
+            <tr>
+                <td>שוקולד🍫</td>
+                <td>140</td>
+            </tr>
+            <tr>
+                <td>גבינה🧀</td>
+                <td>160</td>
+            </tr>
+            <tr>
+                <td>לימון🍋</td>
+                <td>100</td>
+            </tr>
+            <tbody id="cakes-list"></tbody>
+            <script src="../script.js"></script>
+
+        </table>
+        <br> 
+        <label>הזן תקציב💸</label>
+    <div>
+        <input id="budget" type="number"> 
+        <button id="budget-button" type="button" onclick="cakeBudget()">הצגת עוגות בתקציב</button>
+    </div>
+<!-- מקום להודעת השגיאה: -->
+    <p id="error"></p>
+    </body>
+</html>
