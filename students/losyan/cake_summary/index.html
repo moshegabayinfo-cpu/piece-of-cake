@@ -1,78 +1,65 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title id="title">Piece of Cake</title>
+    <title>Piece of Cake</title>
 
     <link rel="stylesheet" href="static/style.css">
 </head>
 
 <body>
 
-    <h1 class="cake-title">
-        This is a small cakes website, enjoy the experience!
-    </h1>
+    <h1 class="cake-title">Piece of Cake</h1>
 
     <table class="cake-table" id="cakeTable">
 
         <thead class="cake-table-header">
             <tr>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Price</th>
+                <th>שם העוגה</th>
+                <th>מחיר</th>
             </tr>
         </thead>
 
         <tbody class="cake-table-body">
 
             <tr>
-                <td>
-                    <img src="static/image1.jpg"
-                         alt="Chocolate Cake"
-                         width="100">
-                </td>
-                <td>Chocolate Cake</td>
-                <td>$10</td>
+                <td>עוגת שוקולד</td>
+                <td>140 ₪</td>
             </tr>
 
             <tr>
-                <td>
-                    <img src="static/image2.jpg"
-                         alt="Vanilla Cake"
-                         width="100">
-                </td>
-                <td>Vanilla Cake</td>
-                <td>$12</td>
+                <td>עוגת גבינה</td>
+                <td>160 ₪</td>
             </tr>
 
             <tr>
-                <td>
-                    <img src="static/image3.jpg"
-                         alt="Strawberry Cake"
-                         width="100">
-                </td>
-                <td>Strawberry Cake</td>
-                <td>$15</td>
+                <td>עוגת לימון</td>
+                <td>100 ₪</td>
             </tr>
 
         </tbody>
     </table>
 
     <div class="filter">
+
+        <label for="budget">הכניסי את התקציב שלך (בש״ח):</label>
+
         <input
             type="number"
             id="budget"
-            placeholder="Enter your budget"
+            placeholder="הכניסי תקציב"
         >
 
-        <button id="filterButton"
-                class="filter-button"
-                onclick="filterCakes()">
-            Filter Cakes
+        <button
+            id="filterButton"
+            class="filter-button"
+            onclick="filterCakes()">
+            סינון עוגות
         </button>
+
     </div>
 
     <p id="error_message" class="error-message"></p>

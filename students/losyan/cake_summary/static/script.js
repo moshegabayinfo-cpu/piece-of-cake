@@ -1,21 +1,23 @@
 
 const cakes = [
-    { name: "Chocolate Cake", price: 10 },
-    { name: "Vanilla Cake", price: 12 },
-    { name: "Strawberry Cake", price: 15 }
+    { name: "עוגת שוקולד", price: 140 },
+    { name: "עוגת גבינה", price: 160 },
+    { name: "עוגת לימון", price: 100 }
 ];
- 
-function filterCakes(){
+
+function filterCakes() {
     const budgetInput = document.getElementById("budget");
     const budget = parseFloat(budgetInput.value);
     const errorMessage = document.getElementById("error_message");
+    const tableBody = document.querySelector("#cakeTable tbody");
 
     if (isNaN(budget) || budget < 0) {
-        errorMessage.textContent = "Please enter a valid budget.";
+        errorMessage.textContent = "נא להזין תקציב תקין.";
         return;
     }
-    
+
     errorMessage.textContent = "";
+
     const filteredCakes = [];
 
     for (const cake of cakes) {
@@ -23,11 +25,17 @@ function filterCakes(){
             filteredCakes.push(cake);
         }
     }
+
+    tableBody.innerHTML = "";
+
     if (filteredCakes.length === 0) {
-        errorMessage.textContent = "No cakes available within your budget.";
-    }else {
-        const table = document.querySelector('#cakeTable');
-        table.innerHTML = '<tr><td>' 
-        + filteredCakes.map(cake => `${cake.name}: $${cake.price.toFixed(2)}`).join('</td></tr><tr><td>') + '</td></tr>'
+        errorMessage.textContent = "אין עוגות במסגרת התקציב שלך.";
+    } else {
+        tableBody.innerHTML = filteredCakes.map(cake => `
+            <tr>
+                <td>${cake.name}</td>
+                <td>${cake.price} ₪</td>
+            </tr>
+        `).join("");
     }
 }
