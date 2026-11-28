@@ -1,0 +1,70 @@
+losyan
+branch : submission/losyan/cake_summary
+link for pull request:https://github.com/moshegabayinfo-cpu/piece-of-cake/pull/3 
+
+
+
+
+
+1.1- I used an h1 element for the main title of the website:
+
+<h1 class="cake-title">Piece of Cake</h1>
+-----------------------------------------------------------------------------------------------------------------
+1.2- the user must enter a vailed budget for buying a cake , 
+the button must filter the cakes based on their price and the budget of the user
+---------------------------------------------------------------------------------------------------------------
+2.1- HTML is the elements such as input,div,h1..... , css is the style of the HTML body and elements
+for example:html: <h1 class="cake-title">
+                     This is a small cakes website, enjoy the experience!
+                  </h1>
+css:.cake-title {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: rgb(90, 90, 131);
+}
+------------------------------------------------------------------------------------------------------------------------
+2.2 -  background-color: #f4f4f4;
+-----------------------------------------------------------------------------------------------------------------------
+3.1- i did switch the budget into number after getting the value of the input :const budget = parseFloat(budgetInput.value);
+this is important because we r doing mathmatic calcuations on the budget so we need it as a number not string 
+-------------------------------------------------------------------------------------------------------------------------
+3.2 - Yes, because we want to include cakes whose price is equal to or lower than the user's budget.
+
+cake.price <= budget
+-------------------------------------------------------------------------------------------------------------------------
+4.1 - port 8000 :server = ThreadingHTTPServer(
+    ("0.0.0.0", 8000),
+    SimpleHTTPRequestHandler
+)
+-----------------------------------------------------------------------------------------------------------------------------
+4.2 - it will not work "not found" because ctrl +c is stoping the python running and we will lose the conniction so if we try
+to open it again it wont work . the server is shut down
+---------------------------------------------------------------------------------------------------------------------------------
+i used port 8091 
+5.1 - build command builds the image , and run command runs the container from image 
+5.2 - In 8091:8000, 8091 is the port on my computer (host),
+and 8000 is the port inside the Docker container.
+
+I opened the website using:
+http://localhost:8091
+--------------------------------------------------------------------------------------------------------------------------------------
+6.1 - Commit Saves the changes , along with a commit message.
+Push  Uploads the committed changes to GitHub.
+-------------------------------------------------------------------------------------------------------------------------------------
+6.2 - Command that shows which files have changed: git status
+Name of the branch : submission/losyan/cake-summary
+------------------------------------------------------------------------------------------------------------------------------------
+בדיקות בפועל:
+טעינה ראשונית — 3 עוגות: ✔️
+תקציב 100 — לימון בלבד: ✔️
+תקציב 140 — לימון ושוקולד: ✔️
+תקציב 200 — 3 עוגות: ✔️
+תקציב 50 — אין תוצאות והודעה: ✔️
+תקציב 0 — אין תוצאות והודעה: ✔️
+שדה ריק — הודעה: ✔️
+תקציב שלילי — הודעה: ✔️
+לחיצות חוזרות — ללא כפילויות: 
+הפעלה עם Python: ✔️
+הפעלה עם Docker: ✔️
+הכתובת שפתחתי: http://localhost:8091
